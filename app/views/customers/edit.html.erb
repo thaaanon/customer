@@ -1,0 +1,77 @@
+<div class="container">
+  <h1 class="title is-3">Edit Customer</h1>
+
+  <%= form_with(model: @customer, local: true) do |form| %>
+    <% if @customer.errors.any? %>
+      <div id="error_explanation" class="notification is-danger">
+        <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+        <ul>
+          <% @customer.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="columns">
+      <div class="column is-half">
+        <!-- Full Name Field -->
+        <div class="field">
+          <%= form.label :full_name, class: 'label' %>
+          <%= form.text_field :full_name, class: 'input' %>
+        </div>
+
+        <!-- Email Address Field -->
+        <div class="field">
+          <%= form.label :email_address, class: 'label' %>
+          <%= form.text_field :email_address, class: 'input' %>
+        </div>
+
+        <!-- Phone Number Field -->
+        <div class="field">
+          <%= form.label :phone_number, class: 'label' %>
+          <%= form.text_field :phone_number, class: 'input' %>
+        </div>
+
+        <!-- Notes Field -->
+        <div class="field">
+          <%= form.label :notes, class: 'label' %>
+          <%= form.text_area :notes, class: 'textarea' %>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="field">
+          <%= form.label :image, class: 'label' %>
+          <%= form.file_field :image, class: 'input' %>
+        </div>
+
+        <!-- If the customer has an image attached -->
+        <% if @customer.image.attached? %>
+          <div class="field">
+            <p class="help is-info">Current profile picture:</p>
+            <%= image_tag @customer.image.variant(resize: "200x200") %> <!-- Display current image -->
+            
+            <!-- Option to remove the image -->
+            <div class="field">
+              <%= form.check_box :remove_image %>
+              <%= form.label :remove_image, 'Remove current profile picture', class: 'label' %>
+            </div>
+          </div>
+        <% end %>
+
+        <!-- If no image is attached, show the default image -->
+        <% unless @customer.image.attached? %>
+          <div class="field">
+            <p class="help is-info">No profile picture available. Default image shown:</p>
+            <%= image_tag "default-profile.png", size: "200x200" %> <!-- Your default image -->
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="field">
+      <%= form.submit 'Update Customer', class: 'button is-primary is-fullwidth' %>
+    </div>
+  <% end %>
+</div>

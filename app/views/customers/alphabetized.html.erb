@@ -1,0 +1,17 @@
+<!-- app/views/customers/alphabetized.html.erb -->
+<section class="section">
+  <div class="container">
+    <h1 class="title is-3">Alphabetized Customers</h1>
+    <div class="buttons">
+      <%= link_to 'View All Customers', customers_path, class: 'button is-link' %>
+      <%= link_to 'View Customers Missing Email', customers_missing_email_path, class: 'button is-link' %>
+    </div>
+    <div class="columns is-multiline">
+      <% @customers.each do |customer| %>
+        <div class="column is-one-third">
+          <%= render 'customer', customer: customer %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

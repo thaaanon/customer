@@ -1,0 +1,11 @@
+<h1>Customer Details</h1>
+
+<p><strong>Name:</strong> <%= @customer.full_name %></p>
+<p><strong>Phone Number:</strong> <%= @customer.phone_number %></p>
+<p><strong>Email Address:</strong> <%= @customer.email_address %></p>
+<p><strong>Notes:</strong> <%= @customer.notes %></p>
+
+<%= image_tag @customer.image.url if @customer.image.present? %> <!-- Display image if exists -->
+
+<%= link_to 'Edit', edit_customer_path(@customer), class: 'button' %> |
+<%= link_to 'Back to Customers', customers_path, class: 'button' %>

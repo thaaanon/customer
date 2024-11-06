@@ -1,0 +1,33 @@
+<div class="box">
+  <div class="media">
+    <figure class="media-left">
+      <% if customer.image.attached? %>
+        <%= image_tag customer.image, alt: "#{customer.full_name}'s Image", class: "image is-rounded" %>
+      <% else %>
+        <%= image_tag "default-profile.png", alt: "Default Image", class: "image is-rounded" %>
+      <% end %>
+    </figure>
+    <div class="media-content">
+      <h3 class="title is-4"><%= customer.full_name %></h3>
+      <p>
+        <strong><i class="fas fa-phone-alt"></i> Phone:</strong>
+        <span><%= customer.phone_number %></span>
+      </p>
+      <p>
+        <strong><i class="fas fa-envelope"></i> Email:</strong>
+        <span><%= customer.email_address.presence || "No Email Provided" %></span>
+      </p>
+      <% if customer.notes.present? %>
+        <p>
+          <strong><i class="fas fa-sticky-note"></i> Notes:</strong>
+          <span><%= customer.notes %></span>
+        </p>
+      <% end %>
+
+      <!-- Edit Button-->
+      <div class="buttons">
+        <%= link_to 'Edit', edit_customer_path(customer), class: "button is-info" %>
+      </div>
+    </div>
+  </div>
+</div>

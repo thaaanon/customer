@@ -2,16 +2,20 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :articles
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Health check
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/*
+  # PWA files
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Customer routes
+  root "customers#index"
+
+  get "customers/alphabetized" => "customers#alphabetized", as: :customers_alphabetized
+  get "customers/missing_email" => "customers#missing_email", as: :customers_missing_email
+
+  # Add routes for all actions (new, create, edit, update, destroy)
+  resources :customers, only: [:index, :new, :create, :edit, :update, :destroy]
 end

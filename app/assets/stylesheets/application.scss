@@ -1,0 +1,74 @@
+/* app/assets/stylesheets/application.scss */
+@import "customers";
+
+/* Global Styles */
+:root {
+  --primary-color: #4f46e5;
+  --primary-light: #818cf8;
+  --background-color: #f8fafc;
+  --card-background: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --success-color: #22c55e;
+  --danger-color: #ef4444;
+}
+
+/* Navbar Styling */
+.navbar.is-primary {
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.15);
+  
+  .navbar-item {
+    color: white !important;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+    }
+  }
+  
+  .button.is-light {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    transition: all 0.3s;
+    
+    &:hover {
+      background: white;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .icon {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+/* Footer Styling */
+.footer {
+  background: transparent;
+  padding: 3rem 1.5rem;
+  
+  strong {
+    color: var(--primary-color);
+  }
+  
+  a {
+    color: var(--primary-light);
+    
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+}
+
+/* Main Content Area */
+main {
+  min-height: calc(100vh - 52px - 140px);
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+  .navbar-menu {
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+  }
+}
